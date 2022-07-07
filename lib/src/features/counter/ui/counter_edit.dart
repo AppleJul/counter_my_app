@@ -1,4 +1,4 @@
-import 'package:counter_my_app/src/features/counter/models/counter_edit.dart';
+import 'package:counter_my_app/src/features/counter/ui/counter_list.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_my_app/src/features/counter/ui/home_page.dart';
 import 'package:counter_my_app/main.dart';
@@ -46,7 +46,11 @@ class CounterScreen extends State<CounterScreenState> {
           ],
         )
       ),
-      floatingActionButton: FloatingActionButton.extended(onPressed:(){},
+      floatingActionButton: FloatingActionButton.extended(onPressed:(){
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return CounterListScreen(_count);
+        }));
+      },
           label: const Text('Stop'),
           backgroundColor: Colors.pink,
           icon: Icon(Icons.stop),
