@@ -1,29 +1,31 @@
+import 'package:counter_my_app/src/features/counter/models/counter.dart';
 import 'package:flutter/material.dart';
 
-class CounterListScreen extends StatelessWidget {
+class MyCounterPage extends StatefulWidget {
+  MyCounterPage({Key? key, required this.title}) : super(key: key);
+  final String title;
 
-  int number;
-  CounterListScreen(this.number);
+  @override
+  _MyCounterPageState createState() => _MyCounterPageState();
+}
+
+class _MyCounterPageState extends State<MyCounterPage> {
+  final _countlist = <Counter>[];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Counter List'), backgroundColor: Colors.pink,),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('$number', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26.0)),
-            ],
-          ),
-        ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.of(context).pop();},
-        label: const Text('Создать еще счетчик'),
-        backgroundColor: Colors.pink,
-        icon: Icon(Icons.add),
-      ),
-    );
-  }
-}
+        appBar: AppBar(
+        title: Text(widget.title),
+    actions: [
+    IconButton(
+    onPressed: () {
+    setState(() {_countlist.clear();
+    });
+    },
+    icon: Icon(Icons.delete),
+    )
+    ],
+    ),
+
+    body:
